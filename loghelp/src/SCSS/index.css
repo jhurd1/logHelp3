@@ -1,0 +1,36 @@
+/***************************************************
+* Responsiveness
+ ****************************************************/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: black;
+}
+
+p {
+  font-family: "Book Antiqua";
+  font-size: large;
+  color: white;
+}
+
+/*It was easier to control column fonts from placement.scss*/
+.heading {
+  font-family: "Book Antiqua";
+  font-size: xx-large;
+  color: crimson;
+}
+
+label {
+  font-family: "Book Antiqua";
+  font-size: 15px;
+  color: white;
+  padding: 5px;
+}
+
+input {
+  padding: 5px;
+}
+
+/*# sourceMappingURL=index.css.map */

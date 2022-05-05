@@ -1,0 +1,49 @@
+/***************************************************
+* Responsiveness
+ ****************************************************/
+$breakpoints: (
+        'mobile:' 767px,
+        'tablet:' 992px,
+        'smallComputer:' 1100px,
+        'desktop:' 1200px
+) !default;
+
+@mixin responsive($breakpoint)
+{
+  @if map-has-key($breakpoints, $breakpoint)
+  {
+    @media (min-width:map-get($breakpoints, $breakpoint))
+    {
+      @content
+
+    }
+    .grid_layout{
+      display:grid;
+      grid-template-columns:repeat(4, 25%);
+      grid-template-rows:repeat(4, 25%);
+      gap:20px;
+    }
+
+    .heading{
+      grid-column-start:1;
+      grid-column-end:3;
+      grid-row-start:1;
+    }
+
+    .appDescription {
+      padding:10px;
+      grid-column-start:2;
+      grid-column-end:3;
+      grid-row-start:2;
+      font-family:"Book Antiqua";
+      font-size:large;
+      color: white;
+    }
+
+    .center {
+      grid-row-start:3;
+      grid-column-start:2;
+      grid-column-end:3;
+    }
+  }
+}
