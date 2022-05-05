@@ -1,0 +1,55 @@
+1. https://github.com/axios/axios/issues/4621
+    On this, the fourth or fifth try at this application in three weeks, I have seen the following error in React
+    more than once:
+
+        Compiled with problems:X
+
+        ERROR in ../../../node_modules/axios/lib/adapters/xhr.js 17:10-24
+
+        Module not found: Error: Can't resolve 'url' in '/Users/jamiehurd/node_modules/axios/lib/adapters'
+
+        BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+        This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+        If you want to include a polyfill, you need to:
+            - add a fallback 'resolve.fallback: { "url": require.resolve("url/") }'
+            - install 'url'
+        If you don't want to include a polyfill, you can use an empty module like this:
+            resolve.fallback: { "url": false }
+
+    See: https://stackoverflow.com/questions/72008697/error-module-not-found-in-react-cannot-resolve-url-in-axios-lib-adapters
+
+    and: https://github.com/axios/axios/issues/4621
+
+2. https://stackoverflow.com/questions/46239109/axios-version-package-json
+    To upgrade to a specific version of Axios:
+    npm install <package>@<version> --save
+    The --save option embeds the text in the package.json file.
+
+3. Uncaught TypeError: react__WEBPACK_IMPORTED_MODULE_0___default(...).render is not a function
+       at Module../src/index.js
+        https://stackoverflow.com/questions/61388663/typeerror-react-webpack-imported-module-0-default-is-not-a-function
+        I needed to amend my import statement in index.js to include {} braces around an object:
+        import {serviceUser} from "./ServiceUser";
+
+        This error returned. render() is deprecated as it was called in my context in index.js. I resolved it with a
+        const variable that called createRoot.
+
+4. Line returns a "promise."
+    index.js: ServiceUser.getUser().
+    https://stackoverflow.com/questions/46000360/use-of-then-in-reactjs
+
+5. Apple concealed hidden folders despite the use of hotkeys.
+    I needed to remove and reinstitute git to associate with a new repo but it was associating instead with the old ne.
+    https://www.lifewire.com/view-hidden-mac-folders-using-terminal-2260776
+    Use the following lines:
+    defaults write com.apple.finder AppleShowAllFiles TRUE
+
+    killall Finder
+
+    ...
+
+    Note: On apple ls -al shows the hidden folders in terminal.
+
+
+
