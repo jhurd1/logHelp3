@@ -15,7 +15,6 @@ p {
   color: white;
 }
 
-/*It was easier to control column fonts from placement.scss*/
 .heading {
   font-family: "Book Antiqua";
   font-size: xx-large;

@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
 import axios from './http-common';
 import './SCSS/index.css';
-import ServiceUser from './ServiceUser';
+//import './LHUserService';
 
-/*
-NOTE: THIS CLASS LIKELY CORRESPONDS WITH THE
-USERCOMPONENT.JS IN THE EXAMPLE VIDEO
-See: 29:20 in the video.
- */
+// shouldn't need react hook since classes are supposed to do the same thing
 class TakeInput extends React.Component{
     // constructor props permits passing default values to callers
     constructor(props)
@@ -19,8 +15,7 @@ class TakeInput extends React.Component{
                 fpath: props.fpath,
                 searchStrings: props.searchStrings,
                 anonymize:props.anonymize,
-                status: props.status,
-                users:[]
+                status: props.status
             }
         }
     }
@@ -34,14 +29,16 @@ class TakeInput extends React.Component{
     handleChange=(e)=>{
         // need to add state modify var, too?
         //current value of the user
-        let user = this.state.user;
+        var user = this.state.user;
         //extract value of input embodied in 'target'
-        let modifiedPath = e.target.fpath;
-        let modifiedStrings = e.target.searchStrings;
-        let modifiedAnonymize = e.target.anonymize;
+        var modifiedPath = e.target.fpath;
+        var modifiedStrings = e.target.searchStrings;
+        var modifiedAnonymize = e.target.anonymize;
+        //update user
         user.fpath = modifiedPath;
         user.searchStrings = modifiedStrings;
         user.anonymize = modifiedAnonymize;
+        // test console.log for debugging
         console.log(e);
         this.setState({
             fpath: e.target.fpath,
@@ -70,7 +67,8 @@ class TakeInput extends React.Component{
             anonymize: this.state.anonymize,
             status: this.state.status
         }
-
+        // the key to post, serialization, and working with Java
+        // possibly requires a Java API to furnish a URL/URI here
         axios.post('http://localhost:3000', this.state).then(response => {
             console.log(response)
         }).catch(error => {
@@ -78,11 +76,6 @@ class TakeInput extends React.Component{
         })
         alert(': pushed')
         console.log(event);
-
-        ServiceUser.getUsers().then((response)=>
-        {
-            this.setState({users: response.data})
-        });
     };
     render()
     {
@@ -90,26 +83,16 @@ class TakeInput extends React.Component{
             <div>
                 <form className={"grid_layout"} onSubmit={this.handleSubmit}>
                     <p className={"heading"}>Welcome to your web-app log helper tool!</p>
-                    <p className={"appDescription"}>LogHelper is designed to assist in the sharing and anonymizing of log data using
+                    <p className={"appDescription"}>LogHelper is designed to assist in the sharing and anonymization of log data using
                         an automated process for replacing names, IP addresses, Mac addresses, and other
                         sensitive data for the exchange of said data during troubleshooting and case
                         management.</p>
                     <div className={"center"}>
-                        {
-                            this.state.users.map(
-                                user =>
-                                    <label key={user.id}>Enter your path and search strings here:<br/><br/>
-
-                                        <input type="text" value={this.state.user.fpath} onChange={
-                                            this.handleChange.bind(this)} placeholder="file path"/>{user.fpath}
-                                        <input type="text" value={this.state.user.searchStrings} onChange={
-                                            this.handleChange.bind(this)}
-                                               placeholder="search strings"/>{user.searchStrings}
-                                        <button value={this.state.user.status}
-                                                onClick={this.handleSubmit.bind(this)}>{'Search'}</button>
-                                    </label>
-                            )
-                        }
+                        <label>Enter your path and search strings here:<br/><br/>
+                            <input type="text" value={this.state.user.fpath} onChange={this.handleChange.bind(this)} placeholder="file path"/>
+                            <input type="text" value={this.state.user.searchStrings} onChange={this.handleChange.bind(this)} placeholder="search strings" />
+                            <button value={this.state.user.status} onClick={this.handleSubmit.bind(this)}>{'Search'}</button>
+                        </label>
                         <br/>
                         <p>Anonymize results?</p>
                         <input type="radio" value={this.state.user.anonymize} id="yes"
