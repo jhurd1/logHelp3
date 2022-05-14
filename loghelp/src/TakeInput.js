@@ -5,7 +5,8 @@ import './SCSS/index.css';
 
 // shouldn't need react hook since classes are supposed to do the same thing
 class TakeInput extends React.Component{
-    // constructor props permits passing default values to callers
+
+    // constructor properties or "props" permits passing default values to callers
     constructor(props)
     {
         super(props);
@@ -27,17 +28,20 @@ class TakeInput extends React.Component{
     };
 
     handleChange=(e)=>{
-        // need to add state modify var, too?
+
         //current value of the user
         var user = this.state.user;
+
         //extract value of input embodied in 'target'
         var modifiedPath = e.target.fpath;
         var modifiedStrings = e.target.searchStrings;
         var modifiedAnonymize = e.target.anonymize;
+
         //update user
         user.fpath = modifiedPath;
         user.searchStrings = modifiedStrings;
         user.anonymize = modifiedAnonymize;
+
         // test console.log for debugging
         console.log(e);
         this.setState({
@@ -46,11 +50,13 @@ class TakeInput extends React.Component{
             anonymize: e.target.anonymize
         })
     };
+
     handleInput = event => {
         this.setState({fpath: event.target.value});
         this.setState({searchStrings: event.target.value});
         console.log(event);
     };
+
     logValue = () => {
         console.log(this.state.fpath);
         console.log(this.state.searchStrings);
@@ -74,9 +80,10 @@ class TakeInput extends React.Component{
         }).catch(error => {
             console.log(error)
         })
-        alert(': pushed')
+        alert(': search button pushed')
         console.log(event);
     };
+
     render()
     {
         return (
