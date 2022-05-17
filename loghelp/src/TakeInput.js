@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from './http-common';
 import './SCSS/index.css';
-//import './LHUserService';
+import ServiceUser from "./ServiceUser";
 
 // shouldn't need react hook since classes are supposed to do the same thing
 class TakeInput extends React.Component{
@@ -64,24 +64,20 @@ class TakeInput extends React.Component{
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // may not need const user
-        // synthesized for post
-        // replaced again w/ this.state
+
         const user = {
             fpath: this.state.fpath,
             searchStrings: this.state.searchStrings,
             anonymize: this.state.anonymize,
             status: this.state.status
         }
-        // the key to post, serialization, and working with Java
-        // possibly requires a Java API to furnish a URL/URI here
-        axios.post('http://localhost:3000', this.state).then(response => {
+
+        ServiceUser.createUsers().then(response =>
+        {
             console.log(response)
-        }).catch(error => {
+        }).catch(error=> {
             console.log(error)
         })
-        alert(': search button pushed')
-        console.log(event);
     };
 
     render()

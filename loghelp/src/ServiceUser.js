@@ -1,6 +1,6 @@
 import axios from './http-common';
 
-const serviceUserURL = "http://localhost:3000/api/v1/users";
+const serviceUserURL = "http://localhost:5000";
 
 
 class ServiceUser {
