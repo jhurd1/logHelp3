@@ -43,4 +43,3 @@ public class Connections
         //    System.out.println("Read from DB: " + rs.getTimestamp("tick") + "\n");
         }
     }
-}

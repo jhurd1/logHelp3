@@ -6,6 +6,12 @@ import ServiceUser from "./ServiceUser";
 // shouldn't need react hook since classes are supposed to do the same thing
 class TakeInput extends React.Component{
 
+
+    AuthUserContext =
+        React.createContext({
+            user:'', setUser:() => {
+            }});
+
     // constructor properties or "props" permits passing default values to callers
     constructor(props)
     {
@@ -15,17 +21,17 @@ class TakeInput extends React.Component{
             user: {
                 fpath: props.fpath,
                 searchStrings: props.searchStrings,
-                anonymize:props.anonymize,
-                status: props.status
+                anonymize:props.anonymize
             }
         }
     }
     state = {
         fpath: "",
         searchStrings: "",
-        anonymize:"",
-        status:""
+        anonymize:""
     };
+
+
 
     handleChange=(e)=>{
 
@@ -51,33 +57,29 @@ class TakeInput extends React.Component{
         })
     };
 
-    handleInput = event => {
-        this.setState({fpath: event.target.value});
-        this.setState({searchStrings: event.target.value});
-        console.log(event);
-    };
-
-    logValue = () => {
-        console.log(this.state.fpath);
-        console.log(this.state.searchStrings);
-    };
-
     handleSubmit = (event) => {
         event.preventDefault();
 
         const user = {
             fpath: this.state.fpath,
             searchStrings: this.state.searchStrings,
-            anonymize: this.state.anonymize,
-            status: this.state.status
+            anonymize: this.state.anonymize
         }
 
-        ServiceUser.createUsers().then(response =>
+        const response = ServiceUser.createUsers().then(response =>
         {
             console.log(response)
         }).catch(error=> {
             console.log(error)
         })
+
+        function setUser(data) {
+
+        }
+
+        setUser(response.data)
+        localStorage.setItem('user', response.data)
+        console.log(response.data)
     };
 
     render()
