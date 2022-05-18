@@ -11,7 +11,7 @@ import javax.persistence.Basic;
  * CONNECTIONS CLASS
  * Replace generics with table name(s)
  * once entities are in place.
- */
+ **********************************/
 public class Connections
 {
     private BasicDataSource connectionPool;
@@ -36,11 +36,11 @@ public class Connections
     {
         Connection connection = connectionPool.getConnection();
         Statement statement = connection.createStatement();
-        statement.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
-        statement.executeUpdate("INSERT INTO <yourtable> VALUES (now())");
-        ResultSet rs = statement.executeQuery("SELECT whatnot FROM <yourtable>");
-        while (rs.next()) {
-            System.out.println("Read from DB: " + rs.getTimestamp("tick") + "\n");
+        //statement.executeUpdate("CREATE TABLE IF NOT EXISTS Search (Search f)");
+        //statement.executeUpdate("INSERT INTO Search VALUES (now())");
+        //ResultSet rs = statement.executeQuery("SELECT whatnot FROM <yourtable>");
+        //while (rs.next()) {
+        //    System.out.println("Read from DB: " + rs.getTimestamp("tick") + "\n");
         }
     }
 }
