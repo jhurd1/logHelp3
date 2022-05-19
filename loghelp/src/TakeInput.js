@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axios from './http-common';
 import './SCSS/index.css';
 import ServiceUser from "./ServiceUser";
+import enable from './enable_cors';
 
 // shouldn't need react hook since classes are supposed to do the same thing
 class TakeInput extends React.Component{
@@ -74,7 +75,7 @@ class TakeInput extends React.Component{
         })
 
         function setUser(data) {
-
+        
         }
 
         setUser(response.data)
