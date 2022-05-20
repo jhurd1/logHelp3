@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './SCSS/index.css';
 import ServiceUser from "./ServiceUser";
 
@@ -71,7 +71,7 @@ export class TakeInput extends React.Component{
         setUser(response.data)
         localStorage.setItem('user', response.data)
         console.log(response.data)
-        
+
         const xhr = new XMLHttpRequest();
         const url = 'http://127.0.0.1:5000';
         xhr.open('POST', url);
