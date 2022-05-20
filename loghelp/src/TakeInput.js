@@ -1,17 +1,9 @@
 import React, {useState} from 'react';
-import axios from './http-common';
 import './SCSS/index.css';
 import ServiceUser from "./ServiceUser";
-import enable from './enable_cors';
 
 // shouldn't need react hook since classes are supposed to do the same thing
-class TakeInput extends React.Component{
-
-
-    AuthUserContext =
-        React.createContext({
-            user:'', setUser:() => {
-            }});
+export class TakeInput extends React.Component{
 
     // constructor properties or "props" permits passing default values to callers
     constructor(props)
@@ -32,17 +24,15 @@ class TakeInput extends React.Component{
         anonymize:""
     };
 
-
-
     handleChange=(e)=>{
 
         //current value of the user
-        var user = this.state.user;
+        const user = this.state.user;
 
         //extract value of input embodied in 'target'
-        var modifiedPath = e.target.fpath;
-        var modifiedStrings = e.target.searchStrings;
-        var modifiedAnonymize = e.target.anonymize;
+        const modifiedPath = e.target.fpath;
+        const modifiedStrings = e.target.searchStrings;
+        const modifiedAnonymize = e.target.anonymize;
 
         //update user
         user.fpath = modifiedPath;
@@ -75,12 +65,31 @@ class TakeInput extends React.Component{
         })
 
         function setUser(data) {
-        
+
         }
 
         setUser(response.data)
         localStorage.setItem('user', response.data)
         console.log(response.data)
+        
+        const xhr = new XMLHttpRequest();
+        const url = 'http://127.0.0.1:5000';
+        xhr.open('POST', url);
+        xhr.onreadystatechange = function()
+        {
+            if(xhr.readyState === XMLHttpRequest.DONE)
+            {
+                const status = xhr.status;
+                if(status === 0 || (status >= 200 && status < 400))
+                {
+                    console.log(xhr.responseText);
+                } else
+                {
+                    console.log("Request error");
+                }
+            }
+        };
+        xhr.send();
     };
 
     render()
