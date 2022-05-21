@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './SCSS/index.css';
 import ServiceUser from "./ServiceUser";
 
@@ -50,12 +50,6 @@ export class TakeInput extends React.Component{
 
     handleSubmit = (event) => {
         event.preventDefault();
-
-        const user = {
-            fpath: this.state.fpath,
-            searchStrings: this.state.searchStrings,
-            anonymize: this.state.anonymize
-        }
 
         const response = ServiceUser.createUsers().then(response =>
         {
