@@ -32,6 +32,11 @@ public class Search
         this.fpath = fpath;
     }
 
+    public Search()
+    {
+
+    }
+
     /*******************************
      * Accessors and Mutators
      *******************************/

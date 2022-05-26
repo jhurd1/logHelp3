@@ -1,6 +1,6 @@
-import axios from './http-common';
+import axios from "axios";
 
-const serviceUserURL = "http://localhost:5000";
+const serviceUserURL = "http://localhost:8080";
 
 
 class ServiceUser {

@@ -67,7 +67,7 @@ export class TakeInput extends React.Component{
         console.log(response.data)
 
         const xhr = new XMLHttpRequest();
-        const url = 'http://127.0.0.1:5000';
+        const url = 'http://127.0.0.1:8080';
         xhr.open('POST', url);
         xhr.onreadystatechange = function()
         {
